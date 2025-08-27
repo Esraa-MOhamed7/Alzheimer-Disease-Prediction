@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning)
 import joblib
 try:
-    data=pd.read_csv(r"E:\ML Projects\Alzheimer's Disease Dataset\alzheimers_disease_data.csv")
+    data=pd.read_csv(r"https://github.com/Esraa-MOhamed7/Alzheimer-Disease-Prediction/blob/main/alzheimers_disease_data.csv")
     print("done")
 except FileNotFoundError:
     print("not found")
