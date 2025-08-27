@@ -1,25 +1,8 @@
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import GradientBoostingClassifier
-from sklearn.metrics import confusion_matrix, classification_report
 import pandas as pd
 import streamlit as st
-import warnings
-warnings.filterwarnings("ignore", category=UserWarning)
 import joblib
-try:
-    data=pd.read_csv(r"alzheimers_disease_data.csv")
-    print("done")
-except FileNotFoundError:
-    print("not found")
-    exit()
-
-X=data.drop(["DoctorInCharge","PatientID","Diagnosis"],axis=1)
-y=data["Diagnosis"]
-X_train, X_test, y_train, y_test = train_test_split(X, y, stratify=y, test_size=0.2, random_state=42)
-model=GradientBoostingClassifier()
-model.fit(X_train, y_train)
-y_pred = model.predict(X_test)
-joblib.dump(model,'alzheimer_GradientBoostingClassifier.joblib')
+import sklearn
+model=joblib.load('alzheimer_GradientBoostingClassifier.joblib')
 #print("done joblib")
 
 st.title("Alzheimer's Risk Assessment Form")
